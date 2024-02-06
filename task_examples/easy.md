@@ -1,21 +1,55 @@
 # Task #1
+Goals:
+* Introduce the notion of Q&A format.
+* Introduce the standard gates:
+  - Standard gates are those listed in
+    [stdgates.inc](https://github.com/openqasm/openqasm/blob/main/examples/stdgates.inc)
+    excluding backwards compatibility gates
+    `+` popular gates implemented in hardware (iswap?) + `id` for identity (`gphase(0)`).
+  - TODO: list extra gates.
+* Introduce `ignore_global_phase=True` option.
+
+`multiply_gates` task description:
+* A list of gates is presented as `gates` argument;
+* Number of qubits is implicit: 1..3;
+* A product of these gates is guaranteed to be a single named gate
+  (up to global phase if `ignore_global_phase=True`);
+* That gate should be returned as an answer.
+
+Sometimes multiple descriptions are valid. E.g. `crx(pi) q[0] q[1];` and `cx q[0] q[1];`.
+In this case the shortest description gets reward $1.0$ and $0.1$ is subtracted
+for each additional parameter or qubit used (in the example above 1.0 is given for the first
+solution and 0.9 for the second). Wrong or syntactically incorrect solution gets 0 points.
+
+## Example 1
 ```
 Task: multiply_gates(gates=["x", "y", "z"])
 Answer: gphase(pi / 2);
 ```
 
+Answer `gphase(pi / 2) q[0];` is also accepted.
+
+## Example 2
+```
+Task: multiply_gates(
+  gates=["x q[0]", "swap q[0] q[1]", "cx q[0] q[1]", "x q[1]"],
+  ignore_global_phase=True)
+Answer: cx q[1] q[0];
+```
+
+# Task #5
 ```
 Task: fill_blank(
     gate_set=standard_clifford_gates,
     script="""
-        pragma forall qubit qv
-        pragma precondition q == qv
+        pragma forall qstate[2] qv;
+        pragma precondition q == qv;
         qubit q[2];
         swap q[0], q[1];
         x q[1];
         swap q[0], q[1];
         x1? q[x2?];
-        pragma postcondition q == qv
+        pragma postcondition q == qv;
         """)
 Answer:
 line("x1?") = "x q[0];"
