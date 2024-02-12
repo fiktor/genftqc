@@ -54,3 +54,27 @@ Task: fill_blank(
 Answer:
 line("x1?") = "x q[0];"
 ```
+
+# Task 6
+```
+Task: gen_L_state(
+    stab_gen = ['XXXX','ZZZZ'] 
+    )
+Answer:
+[1/sqrt(2), 0, 0, 1/sqrt(2)]
+```
+
+# Task 7
+```
+Task: gen_enc_circ_0(
+    stab_gen = ['XXXX','ZZZZ'],
+    qL1 = ['XIXI', 'ZZII']
+    qL2 = ['XXII', 'ZIZI']
+    )
+Answer:
+qreg qubits[4];
+U(pi/2, 0, pi) qubits[0];
+cx qubits[0] qubits[1];
+cx qubits[1] qubits[2];
+cx qubits[2] qubits[3];
+```
