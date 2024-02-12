@@ -56,6 +56,10 @@ line("x1?") = "x q[0];"
 ```
 
 # Task 6
+Goals:
+* Introduce Stabilizer desription of QEC code
+* Connect stabilizer description of QEC code to code words
+
 ```
 Task: gen_L_state(
     stab_gen = ['XXXX','ZZZZ'] 
@@ -65,6 +69,8 @@ Answer:
 ```
 
 # Task 7
+Goals
+* Generate encoding circuits given a description of a QEC code through stabilizers and logical operators
 ```
 Task: gen_enc_circ_0(
     stab_gen = ['XXXX','ZZZZ'],
