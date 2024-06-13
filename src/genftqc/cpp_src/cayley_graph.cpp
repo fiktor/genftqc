@@ -360,7 +360,9 @@ CycleTops CayleyGraph::find_cycle_tops() const {
     num_h_edges += same_gate_ptr[2 * i + 1] - same_gate_ptr[2 * i];
     bool has_bottleneck = false;
     const uint32_t *cur_ds_ids = downstream_ids.data() + downstream_id_ptr[i];
-    for (std::size_t j = 0; j < cur_level - 1; ++j) {
+    // Note: unsigned comparison won't work for cur_level <= 0, but
+    // cur_level >= 0 and we checked for 0 above:
+    for (std::size_t j = 0; j < std::size_t(cur_level - 1); ++j) {
       if (cur_ds_ids[j] != kInvalidId) {
         has_bottleneck = true;
         break;
@@ -387,7 +389,8 @@ CycleTops CayleyGraph::find_cycle_tops() const {
       uint32_t u = v_same_ids[j];
       const uint32_t *u_ds_ids = downstream_ids.data() + downstream_id_ptr[u];
       bool has_common_bottleneck = false;
-      for (std::size_t k = 0; k < cur_level - 1; ++k) {
+      // cur_level == 0 was checked above.
+      for (std::size_t k = 0; k < std::size_t(cur_level - 1); ++k) {
         if (v_ds_ids[k] != kInvalidId && v_ds_ids[k] == u_ds_ids[k]) {
           has_common_bottleneck = true;
           break;
