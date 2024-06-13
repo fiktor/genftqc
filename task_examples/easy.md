@@ -54,3 +54,126 @@ Task: fill_blank(
 Answer:
 line("x1?") = "x q[0];"
 ```
+
+# Task #6
+Goals:
+* Introduce Stabilizer desription of QEC code
+* Connect stabilizer description of QEC code to code words
+* Here, any circuit that generates a codeword is a valid answer
+
+```
+Task: gen_L_state(
+    stab_gen = ['XXXX','ZZZZ'] 
+    )
+Answer:
+qreg qubits[4];
+U(pi/2, 0, pi) qubits[0];
+cx qubits[0] qubits[1];
+cx qubits[1] qubits[2];
+cx qubits[2] qubits[3];
+```
+
+# Task #7
+Goals:
+* Generate encoding circuits given a description of a QEC code through stabilizers and logical operators
+* Here, only circuits that generate the logical |0> state are valid answers
+```
+Task: gen_enc_circ_0(
+    stab_gen = ['XXXX','ZZZZ'],
+    qL1 = ['XIXI', 'ZZII'],
+    qL2 = ['XXII', 'ZIZI']
+    )
+Answer:
+qreg qubits[4];
+U(pi/2, 0, pi) qubits[0];
+cx qubits[0] qubits[1];
+cx qubits[1] qubits[2];
+cx qubits[2] qubits[3];
+```
+
+# Task #8
+Goals:
+* Generate a general encoding circuit that takes an arbitrary K qubit physical state on Q0-QK (where K is the number of logical qubits), and generates the logical equivalent of that state given a set of stabilizers and logical operators
+* This task aims to teach the agent about stabilizer algebra
+
+```
+Task: gen_enc_circ(
+    stab_gen = ['XXXX','ZZZZ'],
+    qL1 = ['XIXI', 'ZZII'],
+    qL2 = ['XXII', 'ZIZI']
+    )
+Answer:
+qreg qubits[4];
+U(pi/2, 0, pi) qubits[2];
+cx qubits[1] qubits[2];
+cx qubits[1] qubits[3];
+cx qubits[2] qubits[3];
+cx qubits[2] qubits[0];
+cx qubits[0] qubits[1];
+```
+
+# Task #9
+Goals:
+* Introducing ideas of Fault Tolerance (i.e. the generated circuits should be able to sustain at least one single weight t error without the error spreading to an uncorrectable error)
+* We will only look at X type errors in this task
+
+```
+Task: gen_ft_X_enc_circ_0(
+    stab_gen = ['XXXX','ZZZZ'],
+    qL1 = ['XIXI', 'ZZII'],
+    qL2 = ['XXII', 'ZIZI']
+)
+Answer:
+qreg qubits[5];
+U(pi/2, 0, pi) qubits[1];
+cx qubits[1] qubits[2];
+cx qubits[2] qubits[3];
+cx qubits[1] qubits[0];
+cx qubits[3] qubits[4];
+cx qubits[0] qubits[4];
+flag_bit = measure qubits[4];
+```
+
+# Task #10
+Goals:
+* Introducing ideas of Fault Tolerance (i.e. the generated circuits should be able to sustain at least one single weight t error without the error spreading to an uncorrectable error)
+* We will only look at Z type errors in this task
+
+```
+Task: gen_ft_Z_enc_circ_0(
+    stab_gen = ['XXXX','ZZZZ'],
+    qL1 = ['XIXI', 'ZZII'],
+    qL2 = ['XXII', 'ZIZI']
+)
+Answer:
+qreg qubits[5];
+U(pi/2, 0, pi) qubits[1];
+cx qubits[1] qubits[2];
+cx qubits[2] qubits[3];
+cx qubits[1] qubits[0];
+cx qubits[3] qubits[4];
+cx qubits[0] qubits[4];
+flag_bit = measure qubits[4];
+```
+
+# Task #11
+Goals:
+* Introducing ideas of Fault Tolerance (i.e. the generated circuits should be able to sustain at least one single weight t error without the error spreading to an uncorrectable error)
+* We will look at both X and Z type errors in this task
+
+```
+Task: gen_ft_enc_circ_0(
+    stab_gen = ['XXXX','ZZZZ'],
+    qL1 = ['XIXI', 'ZZII'],
+    qL2 = ['XXII', 'ZIZI']
+)
+Answer:
+qreg qubits[5];
+U(pi/2, 0, pi) qubits[1];
+cx qubits[1] qubits[2];
+cx qubits[2] qubits[3];
+cx qubits[1] qubits[0];
+cx qubits[3] qubits[4];
+cx qubits[0] qubits[4];
+flag_bit = measure qubits[4];
+```
