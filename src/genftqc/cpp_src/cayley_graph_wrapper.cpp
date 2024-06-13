@@ -1,5 +1,6 @@
 #include "cayley_graph_wrapper.h"
 #include "cayley_graph.h"
+#include <cstring>
 #include <exception>
 #include <iostream>
 #include <random>
