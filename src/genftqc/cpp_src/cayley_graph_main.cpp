@@ -3,8 +3,10 @@
 #include <H5Cpp.h>
 #include <cstdlib>
 #include <iostream>
+#include <memory>
 #include <random>
 #include <string>
+#include <vector>
 
 int main_gmgt() {
   multiply_gates::CayleyGraph graph;
