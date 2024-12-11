@@ -57,6 +57,43 @@ line("x1?") = "x q[0];"
 
 # Task #6
 Goals:
+* Introduce stabilizer description of QEC codes
+* Learn stabilizer algebra basics and commutation relationships of Pauli operators
+* Learn about stabilizer degree of freedom in logical operator representation
+
+```
+Task: gen_alternate_logical_operators(
+    stab_gen = ['XXXX', 'ZZZZ'],
+    logical_ops = ['XXII', 'XIXI', 'ZIZI', 'ZZII']
+    )
+
+Answer:
+logical_ops = ['IIXX', 'IXIX', 'YXYX', 'YYXX']
+
+Alternative Answer:
+logical_ops = ['IIXX', 'IXIX', IZIZ', 'IIZZ']
+```
+
+
+# Task #7
+Goals:
+* Introduce stabilizer description of QEC codes
+* Learn stabilizer algebra basics and commutation relationships of Pauli operators
+* Find logical operator definitions based on stabilizer generators
+
+```
+Task: gen_logical_operators(
+    stab_gen = ['XXXX', 'ZZZZ']
+    )
+
+Answer:
+logical_ops = ['XXII', 'XIXI', 'ZIZI', 'ZZII']
+```
+
+
+
+# Task #8
+Goals:
 * Introduce Stabilizer desription of QEC code
 * Connect stabilizer description of QEC code to code words
 * Here, any circuit that generates a codeword is a valid answer
@@ -73,7 +110,7 @@ cx qubits[1] qubits[2];
 cx qubits[2] qubits[3];
 ```
 
-# Task #7
+# Task #9
 Goals:
 * Generate encoding circuits given a description of a QEC code through stabilizers and logical operators
 * Here, only circuits that generate the logical |0> state are valid answers
@@ -91,7 +128,7 @@ cx qubits[1] qubits[2];
 cx qubits[2] qubits[3];
 ```
 
-# Task #8
+# Task #10
 Goals:
 * Generate a general encoding circuit that takes an arbitrary K qubit physical state on Q0-QK (where K is the number of logical qubits), and generates the logical equivalent of that state given a set of stabilizers and logical operators
 * This task aims to teach the agent about stabilizer algebra
@@ -112,7 +149,7 @@ cx qubits[2] qubits[0];
 cx qubits[0] qubits[1];
 ```
 
-# Task #9
+# Task #11
 Goals:
 * Introducing ideas of Fault Tolerance (i.e. the generated circuits should be able to sustain at least one single weight t error without the error spreading to an uncorrectable error)
 * We will only look at X type errors in this task
@@ -134,7 +171,7 @@ cx qubits[0] qubits[4];
 flag_bit = measure qubits[4];
 ```
 
-# Task #10
+# Task #12
 Goals:
 * Introducing ideas of Fault Tolerance (i.e. the generated circuits should be able to sustain at least one single weight t error without the error spreading to an uncorrectable error)
 * We will only look at Z type errors in this task
@@ -156,7 +193,7 @@ cx qubits[0] qubits[4];
 flag_bit = measure qubits[4];
 ```
 
-# Task #11
+# Task #13
 Goals:
 * Introducing ideas of Fault Tolerance (i.e. the generated circuits should be able to sustain at least one single weight t error without the error spreading to an uncorrectable error)
 * We will look at both X and Z type errors in this task
