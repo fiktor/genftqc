@@ -1,4 +1,5 @@
 import numpy as np
+import sympy
 
 def single_commutation(A,B):
     paulis = {"I", "X", "Y", "Z"}
@@ -149,3 +150,124 @@ def generate_n_qubit_paulis(n):
 
 #print(generate_n_qubit_paulis(4))
 
+
+class QECC:
+    
+    def __init__(self, stabilizers : list, logical_x : list, logical_z : list):
+        #stabilizer generators
+        self.stabilizers = stablilizers
+        #logical X operator generators
+        self.logical_x = logical_x
+        #logical Z operator generators
+        self.logical_z = logical_z
+        
+    
+    
+    
+def vectorize_pauli_string(A):
+    n = len(A)
+    vector = np.zeros(2*n, dtype = int)
+    
+    for i in range(len(A)):
+        if A[i] == 'X':
+            vector[i] = 1
+        elif A[i] == 'Y':
+            vector[i] = 1
+            vector[n + i] = 1
+        elif A[i] == 'Z':
+            vector[n + i] = 1
+        else:
+            continue
+            
+    return vector
+
+def linear_indep_subset(stabilizers):
+    vectors = []
+    for stabilizer in stabilizers:
+        vector = vectorize_pauli_string(stabilizer)
+        vectors.append(vector)
+        
+    matrix = np.array(vectors)
+    #print(vectors)
+    #M = sympy.Matrix([[1, 0, 1], [1, 1, 0], [0, 1, 1]])
+    #M = sympy.Matrix(vectors)
+    #print(M)
+    #print(M.nullspace(iszerofunc=lambda x: x % 2 == 0))
+    #print(matrix)
+    print()
+    
+    _, inds = sympy.Matrix(matrix).T.rref()
+    #rref, inds = sympy.Matrix(np.array([[1, 1, 0], [0, 1, 1], [1, 0, 1]])).T.rref()
+    #rref, inds = sympy.Matrix(np.array([[0.9, -0.1, -0.2, 0], [-0.8, 0.9, -0.4, 0], [-0.1, -0.8, 0.6, 0]])).T.rref(iszerofunc=lambda x:abs(x)<1e-9)
+    
+#     print(rref.T)
+#     print(inds)
+    
+    independent_stabilizers = []
+    for i in inds:
+        independent_stabilizers.append(stabilizers[i])
+        
+    return independent_stabilizers
+
+### TESTING ###
+test_stabilizers1 = ['IIIXXXX', 'IXXIIXX', 'XIXIXIX', 'IIIZZZZ', 'IZZIIZZ', 'ZIZIZIZ']
+
+test_stabilizers2 = ['IIIXXXX', 'IXXIIXX', 'XIXIXIX', 'IIIZZZZ', 'IZZIIZZ', 'ZIZIZIZ', 'XXIIXXI', 'IIIYYYY', 'ZIZXYXY']
+
+reduced1 = linear_indep_subset(test_stabilizers1)
+reduced2 = linear_indep_subset(test_stabilizers2)
+
+print(reduced1)
+print(reduced2)
+### END TESTING ###
+
+
+def choose_stabilizers(n, k, num_stab_gen):
+    
+    pauli_strings = generate_n_qubit_paulis(n)
+    
+    # randomly choose n-k pauli strings from the list of pauli strings
+    # check if they commute
+        # if one doesn't commute, get rid of it and choose another random stabilizer
+    # check if they are linearly independent
+        # if they aren't, find the minimal set which is linearly independent and add more which are linearly independent s.t. we have n-k of them
+    # if all conditions are satisfied, return them
+    
+    
+    return
+
+
+def get_logical_ops(stabilizers):
+    return
+
+
+def generate_qec_code(n, k):
+    
+    num_stab_gen = n - k
+    
+    stabilizers = choose_stabilizers(n, k, num_stab_gen)
+    logical_x, logical_z = get_logical_ops(stabilizers)
+    
+    code = QECC(stabilizers, logical_x, logical_z)
+    
+    return code
+
+
+    
+def generate_codes(num_codes, min_n, max_n):
+    physical_qubit_counts = list(range(min_n, max_n +1))
+    
+    # Need to decide how many [[n,k,d]] codes to create for each value of n
+    # What distribution is good?
+    num_codes_per_n = []
+    
+    codes = []
+    
+    for i in range(len(num_codes_per_n)):
+        for j in range(num_codes_per_n[i]):
+            codes.append(generate_qec_code(physical_qubit_counts[i], 1))
+        
+    
+    
+    
+    
