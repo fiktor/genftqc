@@ -379,9 +379,9 @@ def generate_codes(n, ks, num_codes):
         
     
 def write_to_json():
-    ns = [4, 5, 6, 7, 8, 9, 10, 11, 12]
-    ks = [[1, 2], [1, 2], [1, 2], [1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
-    num_codes = [30, 100, 400, 1600, 6000, 20000, 100000, 400000, 471870]
+    ns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    ks = [[1], [1], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
+    num_codes = [15, 15, 30, 30, 100, 400, 1600, 6000, 20000, 100000, 400000, 471810]
     #num_codes = [3, 3, 3, 3, 3, 3, 3, 3, 3]
     codes = []
     
@@ -389,7 +389,7 @@ def write_to_json():
         codes += generate_codes(ns[i], ks[i], num_codes[i])
         
         
-    with open("codes.json", "w") as f:
+    with open("codes2.json", "w") as f:
         json.dump(codes, f, indent=4)  # indent=4 for pretty formatting
     
     
