@@ -140,6 +140,11 @@ def verify_logical_ops(given_set, new_set, stabilizers):
             
     return valid_logical_ops
 
+# stab_gen = ["ZXXYIIYXYZ", "IZYZIIXYZI", "IYZXZYZIZY", "ZYYYZXXXXZ", "IZYYIIZXYY", "XZIIYXZYXY", "YZZIIZYYIZ", "XXZYXXIZZI", "XIZIYXXXZZ"]
+# logical_ops = ["IZYXZIXZIX", "YZXIXZYIZX"]
+# new_set = ["ZYZZZIZYYY", "XYIYXZIXXY"]
+
+
 
 # stab_gen = ["ZIZIZXZXIZ", "XZIXIXZZZI", "XYZXYYXXZI", "XYYZYXYXIZ", "YXXXZIYIYX", "ZZZYZXZIIZ", "YYIZZIZXIY", "YXXXXXXIYI"]
 # logical_ops = ["ZXXXYXIIII", "IZZYXIYIII", "ZYXIZZXYYZ", "IZYXXZZYII"]
@@ -154,7 +159,7 @@ def verify_logical_ops(given_set, new_set, stabilizers):
 
 # start_time = time.time()
 
-# for i in range(1000000):
+# for i in range(10000):
 #     temp_bool = verify_logical_ops(logical_ops, new_set, stab_gen)
 
 # end_time = time.time()
