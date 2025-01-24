@@ -136,6 +136,7 @@ def verify_logical_ops(given_set, new_set, stabilizers):
             continue
         else:
             valid_logical_ops = False
+            print(f'Incorrect Logical Operator at index {i}')
             break
             
     return valid_logical_ops
@@ -150,7 +151,16 @@ def verify_logical_ops(given_set, new_set, stabilizers):
 # logical_ops = ["ZXXXYXIIII", "IZZYXIYIII", "ZYXIZZXYYZ", "IZYXXZZYII"]
 # new_set = ["IXYXXIZXIZ", "ZZIYYXXXIZ", "IYYIIYYZYI", "ZZXXYYIZIZ"]
 
+# stab_gen = ["YXYIYIXZ", "XIXIIZZY", "IZXXIIZY", "IIIYZYZZ", "YZIIYYYZ", "XIZYXXZI"]
+# logical_ops = ["IYIIYXXY", "IZYYYXZI", "YYZYYXIZ", "XIZZZYYZ"]
 
+# new_set = ['ZXXIIIIZ', 'ZIZYIIYX', 'XXYYIIXY', 'YZYZXZZY']
+
+
+
+# XZZYYZXIIZYY
+# YXIYZIYZZIXX
+# ZYZIXZZZZZZZ
 
 # stab_gen = ["XYZI", "YXIY", "IYIZ"]
 # logical_ops = ["YXZY", "ZIXZ"]
@@ -159,7 +169,7 @@ def verify_logical_ops(given_set, new_set, stabilizers):
 
 # start_time = time.time()
 
-# for i in range(10000):
+# for i in range(1):
 #     temp_bool = verify_logical_ops(logical_ops, new_set, stab_gen)
 
 # end_time = time.time()
